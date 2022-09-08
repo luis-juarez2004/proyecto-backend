@@ -9,7 +9,7 @@ const server = app.listen(PORT, () => {
 class Container {
     async getAll() {
         try{
-            const contenido = await fs.promises.readFile("./productos.txt", "utf-8");
+            const contenido = await fs.promises.readFileSync('./productos.txt', "utf-8");
             return JSON.parse(contenido)
         }catch(error){}
     }
@@ -21,9 +21,11 @@ class Container {
 }
 
 const contenedor = new Container();
-app.get("./productos", (req, res) => {
-    res.send(`<p>Productos: ${contenedor.getAll()}`);
-});
+app.get('/productos', async (req,res) => {
+    const productos = new Container();
+    const mostrarProductos = await productos.getAll();
+    res.send(mostrarProductos)
+})
 
 app.get("/productosRandom", (res, req) => {
     const random = Math.floor(Math.random()*6+1)

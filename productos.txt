@@ -1,0 +1,17 @@
+[
+    {
+        title: 'Azucar',
+        price: 250,
+        id: 1,
+    },
+    {
+        title: 'Yerba',
+        price: 290,
+        id: 2,
+    },
+    {
+        title: 'Gaseosa',
+        price: 300,
+        id: 3,
+    }
+]
